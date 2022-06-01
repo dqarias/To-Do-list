@@ -9,7 +9,7 @@
 }
 
 :root {
-  /*Setting 1rem to 10px*/
+  /* Setting 1rem to 10px */
   font-size: 62.5%;
 }
 
@@ -18,7 +18,7 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-li{
+li {
   list-style: none;
 }
 
@@ -28,31 +28,31 @@ button {
   color: #aaa9a9;
 }
 
-button:hover{
+button:hover {
   cursor: pointer;
 }
 
-.todos__title{
+.todos__title {
   text-align: center;
   margin-top: 5%;
 }
 
-.todos__container{
-background-color: #fff;
-display: flex;
-flex-direction: column;
-width: 80%;
-margin: 5% auto;
-font-size: 1.4rem;
-box-shadow: 0rem 0.2rem 0.8rem 0rem #63636333 ;
+.todos__container {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 5% auto;
+  font-size: 1.4rem;
+  box-shadow: 0 0.2rem 0.8rem 0 #63636333;
 }
 
 .todos_header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 0.5rem;
-border-bottom: 1px solid #dadada;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid #dadada;
 }
 
 .todos__add {
@@ -63,7 +63,7 @@ border-bottom: 1px solid #dadada;
   border-bottom: 1px solid #dadada;
 }
 
-.todos__add-input{
+.todos__add-input {
   border: 0;
   outline: none;
   font-style: italic;
@@ -93,7 +93,7 @@ border-bottom: 1px solid #dadada;
   margin-left: 0.5rem;
 }
 
-.todos__remove{
+.todos__remove {
   background-color: #f6f6f6;
   display: flex;
   justify-content: center;
@@ -103,5 +103,4 @@ border-bottom: 1px solid #dadada;
 
 .btn-remove:hover {
   text-decoration: underline;
-  
 }
