@@ -51,7 +51,7 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
+  padding: 1rem;
   border-bottom: 1px solid #dadada;
 }
 
@@ -59,7 +59,7 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
+  padding: 1rem;
   border-bottom: 1px solid #dadada;
 }
 
@@ -80,7 +80,7 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem;
+  padding: 1rem;
   border-bottom: 1px solid #dadada;
 }
 
@@ -98,9 +98,21 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: 1.6rem;
 }
 
 .btn-remove:hover {
   text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .todos__title {
+    text-align: center;
+    margin-top: 5%;
+  }
+  
+  .todos__container {
+    width: 40%;
+    margin: 5% auto;
+  }
 }
