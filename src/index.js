@@ -3,33 +3,51 @@ import '@fortawesome/fontawesome-free/js/all.js';
 import './style.css';
 
 const todos = document.querySelector('.todos__list');
+const btnAdd = document.querySelector('#btn-add');
+const todoAdd = document.querySelector('#todo-add')
 
-const todoData = [
-  {
-    description: 'Drag and drop to reorder your list',
-    completed: true,
-    index: 1,
-  },
-  {
-    description: 'Manage all your lists in one place',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'Resync to clear out the old',
-    completed: true,
-    index: 1,
-  },
-];
+class todoTask {
+  constructor(index, description, completed = false ){
+    this.index = index;
+    this.description = description;
+    this.completed = completed;
+  }
+}
+
+const todoData = [];
+
+const addTodo = () => {
+  const todo = new todoTask(1, todoAdd.value)
+  if(todoAdd.value){
+    todos.innerHTML += ` <li class="todo_list">
+    <div>
+       <input type="checkbox" id="todo${todo.index}" name="todo${todo.index}">
+       <label for="todo${todo.index}">${todo.description}</label>
+    </div>
+    <button class="btn">
+       <i class="fa-solid fa-ellipsis-vertical"></i>
+    </button>
+   </li>` 
+  } else {
+    console.log("The input is empty please try again ")
+  }
+  
+}
+/****Add*****/
 
 const renderData = () => {
+  console.log("Visto de afuera",todoData)
   todoData.forEach((todo) => {
-    /* todos.innerHTML += ` <li class="todo__list">
+     todos.innerHTML += ` <li class="todo_list">
+     <div>
         <input type="checkbox" id="todo${todo.index}" name="todo${todo.index}">
         <label for="todo${todo.index}">${todo.description}</label>
+     </div>
+     <button class="btn">
         <i class="fa-solid fa-ellipsis-vertical"></i>
-    </li>`   */
-    const todoList = document.createElement('li');
+     </button>
+    </li>`   
+    /* const todoList = document.createElement('li');
     const checkbox = document.createElement('div');
     const inputTodo = document.createElement('input');
     const labelTodo = document.createElement('label');
@@ -45,14 +63,19 @@ const renderData = () => {
     labelTodo.innerHTML = `${todo.description}`;
     btnTodo.classList.add('btn');
     btnTodo.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
-
     checkbox.appendChild(inputTodo);
     checkbox.appendChild(labelTodo);
     todoList.appendChild(checkbox);
     todoList.appendChild(btnTodo);
-
-    todos.appendChild(todoList);
+    todos.appendChild(todoList); */
   });
 };
 
-renderData();
+
+btnAdd.addEventListener('click', ()=>{
+  
+  console.log("holi",todoData)
+  addTodo()
+  console.log(todoAdd.value)
+  });
+
