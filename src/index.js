@@ -2,7 +2,6 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import '@fortawesome/fontawesome-free/js/all.js';
 import './style.css';
 
-// eslint-disable-next-line import/no-cycle
 import {
   addTodo, editTodo, deleteTodo, getTodo,
 } from './modules/action.js';
@@ -53,7 +52,6 @@ const todoHtml = (todo) => {
         const inputEdit = document.querySelector(`#input-edit${editIndex}`);
         console.log('btnEdit', inputEdit);
         editTodo(editIndex, inputEdit.value);
-        // eslint-disable-next-line no-use-before-define
         renderTodo();
       });
     });
