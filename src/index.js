@@ -1,7 +1,8 @@
 import '@fortawesome/fontawesome-free/css/all.css';
 import '@fortawesome/fontawesome-free/js/all.js';
 import './style.css';
-import Todo from './modules/todo.js'
+
+import {addTodo, editTodo, deleteTodo, getTodo} from './modules/action.js'
 
 const todos = document.querySelector('.todos__list');
 const btnAdd = document.querySelector('#btn-add');
@@ -68,55 +69,8 @@ const todoHtml = (todo) => {
  }) 
 }
 
-const getTodo = () => {
-  const todoData = localStorage.getItem('todoData')
-  if(todoData){
-   return JSON.parse(todoData);
-  } else {
-   return [];
-  }
- }
 
-const storeTodo = (store) => {
-  localStorage.setItem('todoData', JSON.stringify(store));
-}
 const todoData = getTodo();
-const addTodo = () => {
-
-  if(todoAdd.value){
-  const todoData = getTodo();
-  const todo = new Todo(todoData.length + 1, todoAdd.value, false)
-  todoHtml(todo)
-  todoData.push(todo);
-  console.log("todo Data ADD",todoData)
-  storeTodo(todoData);
-  todoAdd.value='';
-  } else {
-    console.log("The input is empty please try again ")
-  }
-}
-
-
-
-const deleteTodo = (index) =>{
-  const li = document.getElementById(`todos${index}`);
-  let Todos = getTodo();
-  const todoDataRemoved = Todos.filter(task => task.index !== Number(index));
-  todoDataRemoved.forEach((task,index) => {
-    task.index = index + 1;
-  }); 
-  console.log("Sorting Ids",todoDataRemoved)
-  storeTodo(todoDataRemoved)
-  renderTodo()
-  //li.remove();
-
-}
-
-const editTodo = (index, value) => {
-  const todoDataEdit = getTodo();
-  todoDataEdit[index-1].description = value;
-  storeTodo(todoDataEdit)
-} 
 
 const renderTodo = () => {
   const todoData = getTodo();
@@ -141,7 +95,7 @@ btnAdd.addEventListener('click', ()=>{
   });
 
 
-
+export {renderTodo, todoHtml}
 
 
 
