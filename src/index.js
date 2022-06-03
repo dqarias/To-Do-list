@@ -33,14 +33,13 @@ const todoHtml = (todo) => {
  const editIndex = singleTodo.getAttribute('id')
  console.log("Start to editing this one", editIndex, editSingleTodo[editIndex-1].description )
  singleTodo.innerHTML = `
- <form action= "#" class= "edit-form" id= "edit${editIndex}"> 
+ <li class= "edit_list" id= "edit${editIndex}"> 
        <div>
-         <i class="fa-solid fa-pen-to-square"></i>
-         <input id="input-edit${editIndex}" type="text"  value="${editSingleTodo[editIndex-1].description}">
+       <i class="icon fa-solid fa-check"></i>
+         <input class="edit_list-input" id="input-edit${editIndex}" type="text"  value="${editSingleTodo[editIndex-1].description}">
        </div>
-       <button id="btn-edit${editIndex}" type ="submit" > <i class="fa-solid fa-check"></i></button>
-     </form>
-     <div></div>
+       <button id="btn-edit${editIndex}" type ="submit" class="btn" > <i class="fa-solid fa-pen"></i></button>
+</li>
  `;
 
  const todoEdit = document.querySelector(`#btn-edit${editIndex}`)

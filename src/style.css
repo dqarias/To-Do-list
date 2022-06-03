@@ -67,7 +67,9 @@ button:hover {
   border: 0;
   outline: none;
   font-style: italic;
-  font-weight: 300;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 500;
+  font-size: 1.4rem;
 }
 
 .todos__list {
@@ -103,6 +105,28 @@ button:hover {
 
 .btn-remove:hover {
   text-decoration: underline;
+}
+
+.edit_list {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  font-weight: 300;
+  background-color: #fffed3;
+}
+
+.edit_list-input{
+  border: 0;
+  outline: none;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1.4rem;
+  margin-left: 0.5rem;
+  background-color: #fffed3;
+}
+
+.icon {
+  color: #aaa9a9;
 }
 
 @media (min-width: 768px) {
