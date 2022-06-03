@@ -6,8 +6,8 @@ import Todo from './modules/todo.js'
 const todos = document.querySelector('.todos__list');
 const btnAdd = document.querySelector('#btn-add');
 const todoAdd = document.querySelector('#todo-add');
-console.log(todos)
 
+console.log(todos)
 
 const todoHtml = (todo) => {
   todos.innerHTML += `<li id="todos${todo.index}" class="todo_list">
@@ -15,14 +15,29 @@ const todoHtml = (todo) => {
      <input type="checkbox" id="todo${todo.index}" name="todo${todo.index}">
      <label for="todo${todo.index}">${todo.description}</label>
   </div>
-  <button>
-  <i class="fa-solid fa-ellipsis-vertical"></i>
-  </button>
   <button id="${todo.index}" class="btn btn-remove">
      <i class="fa-solid fa-trash"></i>
   </button>
  </li>` 
 
+ //Add Event Listener for edit each single book
+
+ console.log("todoHtml", todoData)
+ const todoList = document.querySelectorAll(".todo_list")
+ console.log(todoList)
+ todoList.forEach((singleTodo)=>{
+ singleTodo.addEventListener('dblclick', ()=>{
+ console.log("Start to edit")
+ const todoEdit = getTodo();
+ const edit = singleTodo.getAttribute('id')
+ console.log("Start to editing this one", edit)
+
+   })
+ }) 
+
+ //Add Event Listener for delete each single book
+
+ console.log("todoHtml", todoData)
  const removeBtn = document.querySelectorAll(".btn-remove")
  console.log(removeBtn)
  removeBtn.forEach((singleTodo)=>{
@@ -33,27 +48,27 @@ const todoHtml = (todo) => {
  }) 
 }
 
-const getTodo =() => {
-  const todos = localStorage.getItem('todoData')
-  if(todos){
-   return JSON.parse(todos);
+const getTodo = () => {
+  const todoData = localStorage.getItem('todoData')
+  if(todoData){
+   return JSON.parse(todoData);
   } else {
    return [];
   }
  }
 
-
 const storeTodo = (store) => {
   localStorage.setItem('todoData', JSON.stringify(store));
 }
-
+const todoData = getTodo();
 const addTodo = () => {
 
   if(todoAdd.value){
+  const todoData = getTodo();
   const todo = new Todo(todoData.length + 1, todoAdd.value, false)
   todoHtml(todo)
   todoData.push(todo);
-  console.log("Aca todo data",todoData)
+  console.log("todo Data ADD",todoData)
   storeTodo(todoData);
   todoAdd.value='';
   } else {
@@ -61,17 +76,25 @@ const addTodo = () => {
   }
 }
 
+
 const deleteTodo = (index) =>{
   const li = document.getElementById(`todos${index}`);
   let Todos = getTodo();
-  Todos = Todos.filter(task => task.index !== Number(index));
-  storeTodo(Todos)
-  li.remove();
+  const todoDataRemoved = Todos.filter(task => task.index !== Number(index));
+  todoDataRemoved.forEach((task,index) => {
+    task.index = index + 1;
+  }); 
+  console.log("Sorting Ids",todoDataRemoved)
+  storeTodo(todoDataRemoved)
+  renderTodo()
+  //li.remove();
+
 }
-const todoData = getTodo();
 
 const renderTodo = () => {
-  console.log("Visto de afuera",todoData)
+  const todoData = getTodo();
+  console.log("Data in render",todoData)
+  todos.innerHTML = '';
     todoData.forEach((todo) => { 
       todoHtml(todo)
       });   
@@ -79,17 +102,19 @@ const renderTodo = () => {
 
 renderTodo();
 
+todoAdd .addEventListener('keyup', (e)=>{
+  if (e.key === 'Enter') {
+    addTodo()
+  }
+  });
 
 btnAdd.addEventListener('click', ()=>{
   addTodo()
   console.log(todoAdd.value)
   });
 
-/* const btnRemove = document.querySelector('.btn-remove');
-console.log( btnRemove)
-btnRemove.addEventListener('click', ()=>{
-  console.log("click remove")
-}) 
- */
+
+
+
 
 
