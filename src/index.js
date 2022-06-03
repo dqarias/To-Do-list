@@ -10,8 +10,6 @@ const todos = document.querySelector('.todos__list');
 const btnAdd = document.querySelector('#btn-add');
 const todoAdd = document.querySelector('#todo-add');
 
-console.log(todos);
-const todoData = getTodo();
 const todoHtml = (todo) => {
   todos.innerHTML += `<li id="${todo.index}" class="todo_list">
   <div>
@@ -25,16 +23,11 @@ const todoHtml = (todo) => {
 
   // Add Event Listener for edit each single book
 
-  console.log('todoHtml', todoData);
   const todoList = document.querySelectorAll('.todo_list');
-  console.log(todoList);
   todoList.forEach((singleTodo) => {
     singleTodo.addEventListener('dblclick', () => {
-      console.log('Start to edit');
       const editSingleTodo = getTodo();
-      console.log('Print getTodo from event Listener', editSingleTodo);
       const editIndex = singleTodo.getAttribute('id');
-      console.log('Start to editing this one', editIndex, editSingleTodo[editIndex - 1].description);
       singleTodo.innerHTML = `
  <li class= "edit_list" id= "edit${editIndex}"> 
        <div>
@@ -46,11 +39,9 @@ const todoHtml = (todo) => {
  `;
 
       const todoEdit = document.querySelector(`#btn-edit${editIndex}`);
-      console.log('todoEdit', todoEdit);
       todoEdit.addEventListener('click', (e) => {
         e.preventDefault();
         const inputEdit = document.querySelector(`#input-edit${editIndex}`);
-        console.log('btnEdit', inputEdit);
         editTodo(editIndex, inputEdit.value);
         renderTodo();
       });
@@ -58,10 +49,7 @@ const todoHtml = (todo) => {
   });
 
   // Add Event Listener for delete each single book
-
-  console.log('todoHtml', todoData);
   const removeBtn = document.querySelectorAll('.btn-remove');
-  console.log(removeBtn);
   removeBtn.forEach((singleTodo) => {
     singleTodo.addEventListener('click', () => {
       deleteTodo(singleTodo.getAttribute('id'));
@@ -71,7 +59,6 @@ const todoHtml = (todo) => {
 
 const renderTodo = () => {
   const todoData = getTodo();
-  console.log('Data in render', todoData);
   todos.innerHTML = '';
   todoData.forEach((todo) => {
     todoHtml(todo);
@@ -88,7 +75,6 @@ todoAdd.addEventListener('keyup', (e) => {
 
 btnAdd.addEventListener('click', () => {
   addTodo();
-  console.log(todoAdd.value);
 });
 
 export { renderTodo, todoHtml };

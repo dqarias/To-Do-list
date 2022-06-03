@@ -22,11 +22,8 @@ const addTodo = () => {
     const todo = new Todo(todoData.length + 1, todoAdd.value, false);
     todoHtml(todo);
     todoData.push(todo);
-    console.log('todo Data ADD', todoData);
     storeTodo(todoData);
     todoAdd.value = '';
-  } else {
-    console.log('The input is empty please try again ');
   }
 };
 
@@ -43,7 +40,6 @@ const deleteTodo = (index) => {
   todoDataRemoved.forEach((task, index) => {
     task.index = index + 1;
   });
-  console.log('Sorting Ids', todoDataRemoved);
   storeTodo(todoDataRemoved);
   renderTodo();
   // li.remove();
