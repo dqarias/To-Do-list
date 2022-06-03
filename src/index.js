@@ -10,7 +10,7 @@ const todoAdd = document.querySelector('#todo-add');
 console.log(todos)
 
 const todoHtml = (todo) => {
-  todos.innerHTML += `<li id="todos${todo.index}" class="todo_list">
+  todos.innerHTML += `<li id="${todo.index}" class="todo_list">
   <div>
      <input type="checkbox" id="todo${todo.index}" name="todo${todo.index}">
      <label for="todo${todo.index}">${todo.description}</label>
@@ -28,9 +28,30 @@ const todoHtml = (todo) => {
  todoList.forEach((singleTodo)=>{
  singleTodo.addEventListener('dblclick', ()=>{
  console.log("Start to edit")
- const todoEdit = getTodo();
- const edit = singleTodo.getAttribute('id')
- console.log("Start to editing this one", edit)
+ const editSingleTodo = getTodo();
+  console.log("Print getTodo from event Listener", editSingleTodo);
+ const editIndex = singleTodo.getAttribute('id')
+ console.log("Start to editing this one", editIndex, editSingleTodo[editIndex-1].description )
+ singleTodo.innerHTML = `
+ <form action= "#" class= "edit-form" id= "edit${editIndex}"> 
+       <div>
+         <i class="fa-solid fa-pen-to-square"></i>
+         <input id="input-edit${editIndex}" type="text"  value="${editSingleTodo[editIndex-1].description}">
+       </div>
+       <button id="btn-edit${editIndex}" type ="submit" > <i class="fa-solid fa-check"></i></button>
+     </form>
+     <div></div>
+ `;
+
+ const todoEdit = document.querySelector(`#btn-edit${editIndex}`)
+ console.log("todoEdit", todoEdit)
+ todoEdit.addEventListener('click', (e)=>{
+  e.preventDefault();
+  const inputEdit = document.querySelector(`#input-edit${editIndex}`)
+ console.log("btnEdit", inputEdit)
+ editTodo(editIndex, inputEdit.value)
+ renderTodo();
+ })
 
    })
  }) 
@@ -77,6 +98,7 @@ const addTodo = () => {
 }
 
 
+
 const deleteTodo = (index) =>{
   const li = document.getElementById(`todos${index}`);
   let Todos = getTodo();
@@ -90,6 +112,12 @@ const deleteTodo = (index) =>{
   //li.remove();
 
 }
+
+const editTodo = (index, value) => {
+  const todoDataEdit = getTodo();
+  todoDataEdit[index-1].description = value;
+  storeTodo(todoDataEdit)
+} 
 
 const renderTodo = () => {
   const todoData = getTodo();
