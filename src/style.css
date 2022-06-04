@@ -30,6 +30,7 @@ button {
 
 button:hover {
   cursor: pointer;
+  transform: scale(1.5);
 }
 
 .todos__title {
@@ -84,6 +85,12 @@ button:hover {
   justify-content: space-between;
   padding: 1rem;
   border-bottom: 1px solid #dadada;
+  
+}
+
+.checkbox-input:checked + label{
+  text-decoration: line-through;
+  background-color: #fffed3;
 }
 
 .todo_list div {
@@ -103,7 +110,7 @@ button:hover {
   padding: 1.6rem;
 }
 
-.btn-remove:hover {
+.btn-remove-all:hover {
   text-decoration: underline;
 }
 

@@ -14,7 +14,7 @@ const btnRemoveAll = document.querySelector('.btn-remove-all')
 
 const todoHtml = (todo) => {
   if(todo.completed){
-    todos.innerHTML += `<li id="${todo.index}" class="todo_list">
+    todos.innerHTML += `<li id="${todo.index}" class="todo_list checked__list">
     <div>
        <input class="checkbox-input" type="checkbox" id="todo${todo.index}" name="todo${todo.index}" checked>
        <label for="todo${todo.index}">${todo.description}</label>
