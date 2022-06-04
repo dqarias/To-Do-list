@@ -30,6 +30,7 @@ button {
 
 button:hover {
   cursor: pointer;
+  transform: scale(1.5);
 }
 
 .todos__title {
@@ -86,13 +87,18 @@ button:hover {
   border-bottom: 1px solid #dadada;
 }
 
+.todo_list label {
+  margin-left: 0.5rem;
+}
+
 .todo_list div {
   display: flex;
   align-items: center;
 }
 
-.todo_list label {
-  margin-left: 0.5rem;
+.checkbox-input:checked + label {
+  text-decoration: line-through;
+  background-color: #fffed3;
 }
 
 .todos__remove {
@@ -103,7 +109,7 @@ button:hover {
   padding: 1.6rem;
 }
 
-.btn-remove:hover {
+.btn-remove-all:hover {
   text-decoration: underline;
 }
 

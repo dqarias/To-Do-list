@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-cycle
 import { renderTodo, todoHtml } from '../index.js';
 import Todo from './todo.js';
 
@@ -34,7 +33,6 @@ const editTodo = (index, value) => {
 };
 
 const deleteTodo = (index) => {
-  // const li = document.getElementById(`todos${index}`);
   const Todos = getTodo();
   const todoDataRemoved = Todos.filter((task) => task.index !== Number(index));
   todoDataRemoved.forEach((task, index) => {
@@ -42,9 +40,18 @@ const deleteTodo = (index) => {
   });
   storeTodo(todoDataRemoved);
   renderTodo();
-  // li.remove();
+};
+
+const deleteAllTodo = () => {
+  const Todo = getTodo();
+  const todoDataRemoved = Todo.filter((task) => task.completed === false);
+  todoDataRemoved.forEach((task, index) => {
+    task.index = index + 1;
+  });
+  storeTodo(todoDataRemoved);
+  renderTodo();
 };
 
 export {
-  addTodo, deleteTodo, editTodo, getTodo, storeTodo,
+  addTodo, deleteTodo, editTodo, getTodo, storeTodo, deleteAllTodo,
 };
