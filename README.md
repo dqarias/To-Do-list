@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Set up project with webpack
+# To Do List app
 
 > This project is about building a simple HTML list of To Do tasks and is built using webpack and served by a webpack dev server.
 

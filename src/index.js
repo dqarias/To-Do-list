@@ -2,57 +2,79 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import '@fortawesome/fontawesome-free/js/all.js';
 import './style.css';
 
+import {
+  addTodo, editTodo, deleteTodo, getTodo,
+} from './modules/action.js';
+
 const todos = document.querySelector('.todos__list');
+const btnAdd = document.querySelector('#btn-add');
+const todoAdd = document.querySelector('#todo-add');
 
-const todoData = [
-  {
-    description: 'Drag and drop to reorder your list',
-    completed: true,
-    index: 1,
-  },
-  {
-    description: 'Manage all your lists in one place',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'Resync to clear out the old',
-    completed: true,
-    index: 1,
-  },
-];
+const todoHtml = (todo) => {
+  todos.innerHTML += `<li id="${todo.index}" class="todo_list">
+  <div>
+     <input type="checkbox" id="todo${todo.index}" name="todo${todo.index}">
+     <label for="todo${todo.index}">${todo.description}</label>
+  </div>
+  <button id="${todo.index}" class="btn btn-remove">
+     <i class="fa-solid fa-trash"></i>
+  </button>
+ </li>`;
 
-const renderData = () => {
-  todoData.forEach((todo) => {
-    /* todos.innerHTML += ` <li class="todo__list">
-        <input type="checkbox" id="todo${todo.index}" name="todo${todo.index}">
-        <label for="todo${todo.index}">${todo.description}</label>
-        <i class="fa-solid fa-ellipsis-vertical"></i>
-    </li>`   */
-    const todoList = document.createElement('li');
-    const checkbox = document.createElement('div');
-    const inputTodo = document.createElement('input');
-    const labelTodo = document.createElement('label');
-    const btnTodo = document.createElement('button');
-    todoList.classList.add('todo_list');
-    inputTodo.setAttribute('type', 'checkbox');
-    inputTodo.setAttribute('id', `todo${todo.index}`);
-    inputTodo.setAttribute('name', `todo${todo.index}`);
-    if (todo.completed) {
-      inputTodo.setAttribute('checked', true);
-    }
-    labelTodo.setAttribute('for', `todo${todo.index}`);
-    labelTodo.innerHTML = `${todo.description}`;
-    btnTodo.classList.add('btn');
-    btnTodo.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
+  // Add Event Listener for edit each single book
 
-    checkbox.appendChild(inputTodo);
-    checkbox.appendChild(labelTodo);
-    todoList.appendChild(checkbox);
-    todoList.appendChild(btnTodo);
+  const todoList = document.querySelectorAll('.todo_list');
+  todoList.forEach((singleTodo) => {
+    singleTodo.addEventListener('dblclick', () => {
+      const editSingleTodo = getTodo();
+      const editIndex = singleTodo.getAttribute('id');
+      singleTodo.innerHTML = `
+ <li class= "edit_list" id= "edit${editIndex}"> 
+       <div>
+       <i class="icon fa-solid fa-check"></i>
+         <input class="edit_list-input" id="input-edit${editIndex}" type="text"  value="${editSingleTodo[editIndex - 1].description}">
+       </div>
+       <button id="btn-edit${editIndex}" type ="submit" class="btn" > <i class="fa-solid fa-pen"></i></button>
+</li>
+ `;
 
-    todos.appendChild(todoList);
+      const todoEdit = document.querySelector(`#btn-edit${editIndex}`);
+      todoEdit.addEventListener('click', (e) => {
+        e.preventDefault();
+        const inputEdit = document.querySelector(`#input-edit${editIndex}`);
+        editTodo(editIndex, inputEdit.value);
+        renderTodo();
+      });
+    });
+  });
+
+  // Add Event Listener for delete each single book
+  const removeBtn = document.querySelectorAll('.btn-remove');
+  removeBtn.forEach((singleTodo) => {
+    singleTodo.addEventListener('click', () => {
+      deleteTodo(singleTodo.getAttribute('id'));
+    });
   });
 };
 
-renderData();
+const renderTodo = () => {
+  const todoData = getTodo();
+  todos.innerHTML = '';
+  todoData.forEach((todo) => {
+    todoHtml(todo);
+  });
+};
+
+renderTodo();
+
+todoAdd.addEventListener('keyup', (e) => {
+  if (e.key === 'Enter') {
+    addTodo();
+  }
+});
+
+btnAdd.addEventListener('click', () => {
+  addTodo();
+});
+
+export { renderTodo, todoHtml };
