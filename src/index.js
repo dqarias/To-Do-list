@@ -3,17 +3,17 @@ import '@fortawesome/fontawesome-free/js/all.js';
 import './style.css';
 
 import {
-  addTodo, editTodo, deleteTodo, getTodo, deleteAllTodo
+  addTodo, editTodo, deleteTodo, getTodo, deleteAllTodo,
 } from './modules/action.js';
 import statusTodo from './modules/status.js';
 
 const todos = document.querySelector('.todos__list');
 const btnAdd = document.querySelector('#btn-add');
 const todoAdd = document.querySelector('#todo-add');
-const btnRemoveAll = document.querySelector('.btn-remove-all')
+const btnRemoveAll = document.querySelector('.btn-remove-all');
 
 const todoHtml = (todo) => {
-  if(todo.completed){
+  if (todo.completed) {
     todos.innerHTML += `<li id="${todo.index}" class="todo_list checked__list">
     <div>
        <input class="checkbox-input" type="checkbox" id="todo${todo.index}" name="todo${todo.index}" checked>
@@ -23,7 +23,7 @@ const todoHtml = (todo) => {
        <i class="fa-solid fa-trash"></i>
     </button>
    </li>`;
-  }else{
+  } else {
     todos.innerHTML += `<li id="${todo.index}" class="todo_list">
     <div>
        <input class="checkbox-input" type="checkbox" id="todo${todo.index}" name="todo${todo.index}">
@@ -34,7 +34,6 @@ const todoHtml = (todo) => {
     </button>
    </li>`;
   }
- 
 
   // Add Event Listener for edit each single todo
 
@@ -71,21 +70,18 @@ const todoHtml = (todo) => {
     });
   });
 
-  //Add Event Listener for Checkbox
+  // Add Event Listener for Checkbox
 
-  const checkboxStatus = document.querySelectorAll('.checkbox-input')
-  console.log("checboxstatus", checkboxStatus)
+  const checkboxStatus = document.querySelectorAll('.checkbox-input');
   checkboxStatus.forEach((checkboxTodo) => {
-    checkboxTodo.addEventListener('change',()=>{
+    checkboxTodo.addEventListener('change', () => {
       const todoIndex = checkboxTodo.getAttribute('id');
-      const todoId = todoIndex.slice(4)
-      console.log("Click on change", todoId)
+      const todoId = todoIndex.slice(4);
       statusTodo(checkboxTodo, todoId);
-    })
+    });
   });
 
- //Add Event Listener for delete all todos completed
-
+  // Add Event Listener for delete all todos completed
 };
 
 const renderTodo = () => {
@@ -99,9 +95,8 @@ const renderTodo = () => {
 renderTodo();
 
 btnRemoveAll.addEventListener('click', () => {
-console.log("borrar to seee")
-deleteAllTodo(); 
-})
+  deleteAllTodo();
+});
 
 todoAdd.addEventListener('keyup', (e) => {
   if (e.key === 'Enter') {
@@ -112,7 +107,5 @@ todoAdd.addEventListener('keyup', (e) => {
 btnAdd.addEventListener('click', () => {
   addTodo();
 });
-
-
 
 export { renderTodo, todoHtml };

@@ -85,12 +85,10 @@ button:hover {
   justify-content: space-between;
   padding: 1rem;
   border-bottom: 1px solid #dadada;
-  
 }
 
-.checkbox-input:checked + label{
-  text-decoration: line-through;
-  background-color: #fffed3;
+.todo_list label {
+  margin-left: 0.5rem;
 }
 
 .todo_list div {
@@ -98,8 +96,9 @@ button:hover {
   align-items: center;
 }
 
-.todo_list label {
-  margin-left: 0.5rem;
+.checkbox-input:checked + label {
+  text-decoration: line-through;
+  background-color: #fffed3;
 }
 
 .todos__remove {
