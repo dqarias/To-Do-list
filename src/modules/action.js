@@ -4,6 +4,7 @@ import Todo from './todo.js';
 
 const todoAdd = document.querySelector('#todo-add');
 
+
 const getTodo = () => {
   const todoData = localStorage.getItem('todoData');
   if (todoData) {
@@ -45,6 +46,17 @@ const deleteTodo = (index) => {
   // li.remove();
 };
 
+const deleteAllTodo = () =>{
+  const Todo = getTodo();
+  const todoDataRemoved = Todo.filter((task)=> task.completed === false);
+  todoDataRemoved.forEach((task, index) => {
+    task.index = index + 1;
+  });
+  storeTodo(todoDataRemoved);
+  renderTodo();
+  console.log(todoDataRemoved)
+}
+
 export {
-  addTodo, deleteTodo, editTodo, getTodo, storeTodo,
+  addTodo, deleteTodo, editTodo, getTodo, storeTodo, deleteAllTodo
 };

@@ -3,13 +3,14 @@ import '@fortawesome/fontawesome-free/js/all.js';
 import './style.css';
 
 import {
-  addTodo, editTodo, deleteTodo, getTodo, storeTodo
+  addTodo, editTodo, deleteTodo, getTodo, deleteAllTodo
 } from './modules/action.js';
 import statusTodo from './modules/status.js';
 
 const todos = document.querySelector('.todos__list');
 const btnAdd = document.querySelector('#btn-add');
 const todoAdd = document.querySelector('#todo-add');
+const btnRemoveAll = document.querySelector('.btn-remove-all')
 
 const todoHtml = (todo) => {
   if(todo.completed){
@@ -97,6 +98,11 @@ const renderTodo = () => {
 
 renderTodo();
 
+btnRemoveAll.addEventListener('click', () => {
+console.log("borrar to seee")
+deleteAllTodo(); 
+})
+
 todoAdd.addEventListener('keyup', (e) => {
   if (e.key === 'Enter') {
     addTodo();
@@ -106,5 +112,7 @@ todoAdd.addEventListener('keyup', (e) => {
 btnAdd.addEventListener('click', () => {
   addTodo();
 });
+
+
 
 export { renderTodo, todoHtml };
