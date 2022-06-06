@@ -32,6 +32,14 @@ To get a local copy up and running follow these simple steps.
 - In your code editor open the terminal and run the nex command `npm install` to install all the dependencies from the package.json
 - In the terminal run the next command `npm run start` to open a page live server using webpack devServer 
 
+### Deployment
+
+This project has been deployed using Github page
+
+### Live Demo
+
+[Live Demo Link](https://dqarias.github.io/To-Do-list/dist/)
+
 ## Authors
 
 👤 **Dino Quispe**
